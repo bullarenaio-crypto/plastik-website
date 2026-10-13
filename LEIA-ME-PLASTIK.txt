@@ -15,3 +15,5 @@ O pacote foi preparado a partir do último ZIP do site enviado na conversa: PLAS
 Se o site online foi editado posteriormente, compare os arquivos antes de substituir.
 
 ATUALIZAÇÃO: Cards menores e responsivos. Avatares oficiais: OCEAN, FOREST, RIVERS e GENESIS. Os arquivos index.html, tokenomics.html, oxy.html e as funções originais permanecem intactos.
+
+ATUALIZAÇÃO: O botão DONATE agora abre uma transação USDC via Phantom ou Solflare para a carteira pública configurada. Veja ATIVAR-DOACOES-LEIA.txt. Pré-venda e OXY permanecem indisponíveis.

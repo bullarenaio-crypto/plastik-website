@@ -13,3 +13,5 @@ Abra index.html (ou o site publicado), clique no globo e escolha o idioma.
 O idioma escolhido é mantido ao navegar entre as três páginas.
 Não há compra de tokens, doação real, conexão de carteira nem emissão de OXY nesta versão.
 A pré-venda precisa de testes de segurança e análise jurídica antes de receber recursos.
+
+ATUALIZAÇÃO: O botão DONATE agora abre uma transação USDC via Phantom ou Solflare para a carteira pública configurada. Veja ATIVAR-DOACOES-LEIA.txt. Pré-venda e OXY permanecem indisponíveis.

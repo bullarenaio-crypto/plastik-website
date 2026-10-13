@@ -1,0 +1,28 @@
+PLASTIK — RECEBIMENTO DE DOAÇÕES EM USDC (SOLANA)
+
+CARTEIRA DESTINATÁRIA (PÚBLICA):
+TezNo54KKKtEwCxwi1sL5VPMEbN228znqEntH5akepk
+
+MOEDA: USDC oficial, Solana mainnet. Mint: EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+
+1. Extraia este ZIP e faça upload de todos os arquivos no repositório (substitua os antigos).
+2. Faça deploy da versão estática na Vercel/HTTPS.
+3. No navegador com Phantom ou Solflare instalado, abra o site.
+4. Escolha 0,10 USDC para um teste REAL (gasta USDC e SOL de taxa).
+5. Confirme atentamente moeda, valor e endereço público na carteira.
+6. Aguarde a confirmação e confira a assinatura da transação no Solscan e a carteira destinatária.
+7. Para celular, abra a URL do site pelo navegador interno da Phantom, se o navegador externo não detectar a extensão.
+
+ATENÇÃO:
+- Nenhuma transação foi efetuada por esta entrega. Não foi possível testar um pagamento real sem sua assinatura.
+- O JavaScript inclui carteira Phantom e Solflare, não pede seed phrase/chave privada.
+- Os USDC são enviados diretamente a seu endereço e não para um banco ou ONG.
+- Quem envia precisa de USDC e SOL para taxas/possível criação da conta associada de USDC.
+- O site exibe sucesso somente após confirmar transação e verificar o destino, token, emissor e valor no RPC.
+- O registro de pagamentos mostrado é individual e não um contador mundial de doações.
+- Este é um frontend estático. Para métricas globais, contabilidade, alertas de pagamento ou recibos oficiais, será necessário um backend seguro.
+- O RPC público de Solana usado no teste tem limites e não é adequado ao tráfego de produção. Configure um RPC dedicado antes de escalar.
+- Biblioteca solana-web3.js carregada do jsDelivr com versão fixa. Para produção, hospede e audite uma versão local da dependência.
+- Caso não consiga confirmar, verifique a transação no Solscan antes de tentar novamente e evitar doação duplicada.
+- O tokenomics/pré-venda e o OXY CONTINUAM em prévia, sem comprar nem emitir token.
+- Revise obrigações legais, tributárias e de transparência de captação antes de divulgação pública.

@@ -116,7 +116,7 @@ if(chatLaunch){
 }
 const donationToast=document.getElementById('donateBtn');if(donationToast){
  document.querySelectorAll('.amount').forEach(el=>el.addEventListener('click',localizedDonation));
- donationToast.addEventListener('click',()=>{const toast=document.getElementById('toast');if(toast){toast.textContent=(DATA.faq[lang]||DATA.faq.en).donation}});
+ 
 }
 countdown();if(document.getElementById('stageGrid'))setInterval(countdown,1000);
 applyLanguage(lang,false);
