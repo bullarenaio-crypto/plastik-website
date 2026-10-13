@@ -93,10 +93,11 @@ function applyLanguage(next,save=true){
  const sel=document.getElementById('oxyLanguage');if(sel)sel.value=lang;
  const menu=document.getElementById('langMenu');if(menu)menu.classList.remove('open');
  const toggle=document.getElementById('langToggle');if(toggle)toggle.setAttribute('aria-expanded','false');
- if(document.body.classList.contains('token-page'))document.title=lang==='en'?'Tokenomics & Presale | PLASTIK':t('PLASTIK TOKENOMICS')+' | PLASTIK';
+ if(document.body.classList.contains('clean-page'))document.title='The Clean Tribe | PLASTIK';
+ else if(document.body.classList.contains('token-page'))document.title=lang==='en'?'Tokenomics & Presale | PLASTIK':t('PLASTIK TOKENOMICS')+' | PLASTIK';
  else if(document.getElementById('oxyLanguage'))document.title=lang==='en'?'OXY Impact Credits — PLASTIK':t('PLASTIK IMPACT PROGRAM · PREVIEW')+' — OXY';
  else document.title=lang==='en'?'PLASTIK — The Microplastic Monolith':'PLASTIK — '+t('THE MICROPLASTIC MONOLITH');
- const desc=document.querySelector('meta[name="description"]');if(desc)desc.content=t('Meet MONO: a fictional, conscious microplastic with a big personality and a bigger mission. The internet\'s strangest movement for cleaner oceans, healthier rivers and a greener world.');
+ const desc=document.querySelector('meta[name="description"]');if(desc && !document.body.classList.contains('clean-page'))desc.content=t('Meet MONO: a fictional, conscious microplastic with a big personality and a bigger mission. The internet\'s strangest movement for cleaner oceans, healthier rivers and a greener world.');
  if(save)try{localStorage.setItem('plastik-lang',lang)}catch(e){}
 }
 const toggle=document.getElementById('langToggle'),menu=document.getElementById('langMenu');

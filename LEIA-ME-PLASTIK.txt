@@ -1,0 +1,15 @@
+PLASTIK — THE CLEAN TRIBE
+
+1) Faça backup dos arquivos atuais do GitHub.
+2) Envie TODOS os arquivos e pastas deste pacote para a raiz do mesmo repositório Vercel.
+3) Mantenha a estrutura assets/clean-tribe/*.png exatamente como está.
+4) Publique e abra https://www.wait.finance/clean-tribe.html
+5) Teste os downloads dos 4 PFPs e o seletor de idiomas.
+
+As páginas index.html, tokenomics.html e oxy.html incluem um link para The Clean Tribe.
+O seletor guarda a escolha de idioma no navegador, tal como nas outras páginas.
+Nenhuma carteira, cadastro, venda ou coleta de dados foi acrescentada.
+Os PFPs são imagens criativas; não são NFTs ou comprovantes de impacto ambiental.
+
+O pacote foi preparado a partir do último ZIP do site enviado na conversa: PLASTIK-13-idiomas-traducao-completa.zip.
+Se o site online foi editado posteriormente, compare os arquivos antes de substituir.
