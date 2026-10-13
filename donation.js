@@ -15,21 +15,40 @@ const status=document.getElementById('paymentStatus');
 const receipt=document.getElementById('paymentReceipt');
 if(!button||!status||!receipt)return;
 let processing=false;
-function setStatus(msg,level='ready'){
+const translations=window.PLASTIK_TRANSLATIONS?.donationCopy||{};
+function translate(key,args={}){
+ const lng=window.PLASTIK_CURRENT_LANG||'en';
+ const phrase=translations[lng]?.[key]||translations.en?.[key]||key;
+ return phrase.replace(/\{(\w+)\}/g,(_,name)=>String(args[name]??''));
+}
+let currentStatus={key:'intro',args:{},level:'ready'};
+let currentReceipt=null;
+function setStatus(key,level='ready',args={}){
+ currentStatus={key,level,args};
  status.dataset.state=level;
- status.textContent=msg;
+ status.textContent=translate(key,args.reasonKey?{...args,reason:translate(args.reasonKey,args)}:args);
 }
 function showReceipt(sig,verified,amount){
+ currentReceipt={sig,verified,amount};
+ renderReceipt();
+}
+function renderReceipt(){
+ if(!currentReceipt)return;
+ const {sig,verified,amount}=currentReceipt;
  receipt.replaceChildren();
  const header=document.createElement('b');
- header.textContent=verified?'✔ Confirmed donation: '+amount+' USDC':'Transaction sent: confirmation not yet verified';
+ header.textContent=translate(verified?'receiptConfirmed':'receiptPending',{amount});
  const link=document.createElement('a');
  link.href='https://solscan.io/tx/'+encodeURIComponent(sig);
  link.target='_blank';link.rel='noopener noreferrer';
- link.textContent='View transaction on Solscan ↗';
+ link.textContent=translate('solscan');
  receipt.append(header,document.createElement('br'),link);
  receipt.hidden=false;
 }
+window.addEventListener('plastik:languagechange',()=>{
+ setStatus(currentStatus.key,currentStatus.level,currentStatus.args);
+ renderReceipt();
+});
 function provider(){
  const ph=window.phantom?.solana;
  if(ph?.isPhantom && typeof ph.connect==='function'&&typeof ph.signAndSendTransaction==='function')return ph;
@@ -83,12 +102,12 @@ async function awaitVerification(connection,sig,expected){
   try{
    const tx=await connection.getParsedTransaction(sig,{commitment:'confirmed',maxSupportedTransactionVersion:0});
    if(tx){
-    if(tx.meta?.err!==null)throw new Error('The transfer failed on the Solana network.');
+    if(tx.meta?.err!==null)throw new Error('E_DONATION_TX_FAILED');
     if(isVerified(tx,expected))return true;
-    throw new Error('Transaction confirmed, but USDC payment details did not match the expected recipient and amount.');
+    throw new Error('E_DONATION_MISMATCH');
    }
   }catch(e){
-   if(/transfer failed|details did not match/.test(String(e.message)))throw e;
+   if(/E_DONATION_TX_FAILED|E_DONATION_MISMATCH/.test(String(e.message)))throw e;
    // rate limiting or temporary RPC failures: keep status pending until verifiable
   }
   await wait(2500);
@@ -98,36 +117,36 @@ async function awaitVerification(connection,sig,expected){
 async function donate(){
  if(processing)return;
  const amount=document.querySelector('.amount.selected')?.dataset.amount;
- if(!CHOICES.has(amount)){setStatus('Select a valid donation amount.','error');return;}
+ if(!CHOICES.has(amount)){setStatus('invalidAmount','error');return;}
  const micro=Math.round(Number(amount)*1e6);
  const web3=window.solanaWeb3;
  if(!web3?.PublicKey||!web3?.Connection){
-  setStatus('The Solana payment library could not load. Check the connection and retry. No transaction has been sent.','error');return;
+  setStatus('libraryUnavailable','error');return;
  }
  const wallet=provider();
  if(!wallet){
-  setStatus('Open this site in the Phantom app browser, or install Phantom/Solflare on your desktop browser. No funds have been charged.','error');return;
+  setStatus('walletUnavailable','error');return;
  }
  processing=true;button.disabled=true;
  let signature=null;
  try{
-  setStatus('Connecting to wallet…','pending');
+  setStatus('connecting','pending');
   const result=await wallet.connect();
   const sender=new web3.PublicKey(result?.publicKey||wallet.publicKey);
   const receiver=new web3.PublicKey(RECEIVER);
-  if(sender.equals(receiver))throw new Error('The connected wallet is the receiving wallet. Please use another wallet for a test donation.');
+  if(sender.equals(receiver))throw new Error('E_DONATION_SAME_WALLET');
   const mint=new web3.PublicKey(USDC_MINT);
   const tokenId=new web3.PublicKey(TOKEN_PROGRAM);
   const ataId=new web3.PublicKey(ASSOCIATED_TOKEN_PROGRAM);
   const from=tokenAccount(sender,mint,tokenId,ataId,web3);
   const to=tokenAccount(receiver,mint,tokenId,ataId,web3);
   const connection=new web3.Connection(RPC,'confirmed');
-  setStatus('Checking USDC balance and preparing '+amount+' USDC…','pending');
+  setStatus('checkingBalance','pending',{amount});
   let balance;
   try{balance=await connection.getTokenAccountBalance(from,'confirmed')}catch(e){
-   throw new Error('USDC balance not found. Your wallet needs official USDC on Solana and some SOL for fees.');
+   throw new Error('E_DONATION_BALANCE_MISSING');
   }
-  if(BigInt(balance.value.amount)<BigInt(micro))throw new Error('Insufficient USDC balance. Add '+amount+' USDC and some SOL for network fees.');
+  if(BigInt(balance.value.amount)<BigInt(micro))throw new Error('E_DONATION_BALANCE_INSUFFICIENT');
   const transaction=new web3.Transaction();
   // Idempotent: creates receiving ATA only if absent. Visitor funds rent if needed.
   transaction.add(createRecipientATA(sender,receiver,to,mint,tokenId,ataId,web3));
@@ -135,29 +154,37 @@ async function donate(){
   const block=await connection.getLatestBlockhash('confirmed');
   transaction.recentBlockhash=block.blockhash;
   transaction.feePayer=sender;
-  setStatus('Review the amount, USDC token and recipient in your wallet, then approve or reject.','pending');
+  setStatus('review','pending');
   const sent=await wallet.signAndSendTransaction(transaction);
   signature=typeof sent==='string'?sent:sent?.signature;
-  if(typeof signature!=='string'||!signature.length)throw new Error('The wallet did not return a transaction ID. Check the wallet history before retrying.');
+  if(typeof signature!=='string'||!signature.length)throw new Error('E_DONATION_SIGNATURE_MISSING');
   showReceipt(signature,false,amount);
-  setStatus('Transaction submitted. Verifying recipient and amount on Solana…','pending');
+  setStatus('submitted','pending');
   const verified=await awaitVerification(connection,signature,{sender:sender.toBase58(),source:from.toBase58(),destination:to.toBase58(),micro});
   if(!verified){
-   setStatus('Transaction sent, but confirmation could not be verified yet. Check the Solscan link and your wallet before trying again.','pending');
+   setStatus('unverified','pending');
    return;
   }
   showReceipt(signature,true,amount);
-  setStatus('Thank you! '+amount+' USDC donation verified on Solana.','success');
+  setStatus('success','success',{amount});
  }catch(error){
-  let msg=String(error?.message||error);
-  if(/User rejected|user rejected|declined|cancelled|canceled|4001/.test(msg))msg='Transaction canceled in your wallet. No donation was completed.';
+  const msg=String(error?.message||error);
+  let reason='unexpected';
+  if(/User rejected|user rejected|declined|cancelled|canceled|4001/.test(msg))reason='canceled';
+  else if(msg.includes('E_DONATION_SAME_WALLET'))reason='sameWallet';
+  else if(msg.includes('E_DONATION_BALANCE_MISSING'))reason='balanceMissing';
+  else if(msg.includes('E_DONATION_BALANCE_INSUFFICIENT'))reason='balanceInsufficient';
+  else if(msg.includes('E_DONATION_SIGNATURE_MISSING'))reason='signatureMissing';
+  else if(msg.includes('E_DONATION_TX_FAILED'))reason='transactionFailed';
+  else if(msg.includes('E_DONATION_MISMATCH'))reason='mismatch';
   if(signature){
    showReceipt(signature,false,amount);
-   setStatus('Transaction may have been submitted. '+msg+' Check Solscan before retrying.','error');
+   setStatus('possiblySubmitted','error',{reason:translate(reason,{amount}),reasonKey:reason,amount});
   }else{
-   setStatus(msg.slice(0,350),'error');
+   setStatus(reason,'error',{amount});
   }
  }finally{processing=false;button.disabled=false;}
 }
+setStatus('intro');
 button.addEventListener('click',donate);
 })();

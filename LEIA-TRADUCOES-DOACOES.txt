@@ -1,0 +1,8 @@
+PLASTIK — CORREÇÃO DE IDIOMAS NA ÁREA DE DOAÇÕES
+
+- Corrigidos os textos fixos, status de pagamento e recibos Solscan em 13 idiomas.
+- Trocar o idioma durante uma transação atualiza as mensagens, sem reiniciar ou repetir pagamentos.
+- Carteira, USDC e verificação da blockchain não foram modificados.
+- Mantenha a estrutura de pastas ao substituir todos os arquivos no GitHub e refaça o deploy.
+- Teste alternando Português / Inglês / Espanhol antes de utilizar valores reais.
+- Caso veja a tradução antiga, faça uma atualização completa da página (Ctrl+F5).

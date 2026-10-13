@@ -85,6 +85,7 @@ function refreshChat(){
 }
 function applyLanguage(next,save=true){
  lang=langs.includes(next)?next:'en';
+ window.PLASTIK_CURRENT_LANG=lang;
  document.documentElement.lang=lang==='zh'?'zh-Hans':lang==='pt'?'pt-BR':lang==='en'?'en-US':lang;
  document.documentElement.dir=lang==='ar'?'rtl':'ltr';
  translateNodes();localizedDonation();refreshFinancialStages();refreshChat();
@@ -99,6 +100,7 @@ function applyLanguage(next,save=true){
  else document.title=lang==='en'?'PLASTIK — The Microplastic Monolith':'PLASTIK — '+t('THE MICROPLASTIC MONOLITH');
  const desc=document.querySelector('meta[name="description"]');if(desc && !document.body.classList.contains('clean-page'))desc.content=t('Meet MONO: a fictional, conscious microplastic with a big personality and a bigger mission. The internet\'s strangest movement for cleaner oceans, healthier rivers and a greener world.');
  if(save)try{localStorage.setItem('plastik-lang',lang)}catch(e){}
+ window.dispatchEvent(new CustomEvent('plastik:languagechange',{detail:{language:lang}}));
 }
 const toggle=document.getElementById('langToggle'),menu=document.getElementById('langMenu');
 if(toggle&&menu){
