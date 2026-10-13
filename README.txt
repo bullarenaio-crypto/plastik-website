@@ -1,1 +1,1 @@
-PLASTIK tokenomics + presale preview. Upload index.html and images to GitHub repository root. Presale is NOT LIVE. No payments or wallet integrations. The proposed distribution is 35% presale, 25% burn, 20% community, 10% liquidity, 6% team, 4% treasury.
+PLASTIK website with separate tokenomics.html and oxy.html pages. Upload all files to the repository root. OXY is a preview only; no payments or credits are processed.
