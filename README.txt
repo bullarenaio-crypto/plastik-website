@@ -1,1 +1,1 @@
-PLASTIK website with language globe (English, Portuguese, Spanish, French) and MONO FAQ chatbot. Upload the five files to the GitHub repository root. The chatbot is rule-based, not live AI. Donations and token purchases are disabled.
+PLASTIK tokenomics + presale preview. Upload index.html and images to GitHub repository root. Presale is NOT LIVE. No payments or wallet integrations. The proposed distribution is 35% presale, 25% burn, 20% community, 10% liquidity, 6% team, 4% treasury.
