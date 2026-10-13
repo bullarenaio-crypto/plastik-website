@@ -18,6 +18,42 @@ header{position:sticky;top:0;z-index:40;border-bottom:1px solid #213437;backgrou
 @media(max-width:1130px){.links{gap:9px;font-size:9px}.follow{padding:11px}.hero h1{letter-spacing:-4px}}
 @media(max-width:900px){.nav{flex-wrap:wrap}.menu-btn{display:block}.links{display:none;order:3;width:100%;padding:15px 0;flex-direction:column;align-items:stretch}.links.open{display:flex}.links a{font-size:13px;padding:11px 8px}.hero-inner{grid-template-columns:1fr}.hero{padding:65px 0}.hero-art{min-height:300px}.hero-art img{max-width:330px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.nav{padding:12px 16px}.logo{font-size:19px}.logo small{font-size:7px}.follow{display:none}.container{padding:0 17px}.hero h1{letter-spacing:-3px;font-size:49px}.hero-art{min-height:300px}.orbit{right:0}.orbit.two{left:0}.cards{gap:11px}.info{padding:12px}.info h3{font-size:16px}.steps{grid-template-columns:1fr}.section{padding:60px 0}.community{margin:50px 0}.section-top{display:block}}
+
+/* Clean Tribe compact edition — proportional cards on desktop and mobile. */
+.hero {padding:64px 0 58px}
+.hero-art {min-height:310px}
+.hero-art img {width:min(68%,278px);height:auto;border-width:4px}
+.art-ring {width:min(79%,337px)}
+.section {padding:59px 0 69px}
+.cards {grid-template-columns:repeat(4,minmax(0,199px));justify-content:center;max-width:844px;margin:0 auto;gap:16px}
+.pfp {display:flex;flex-direction:column;text-align:center;min-width:0;border-radius:15px}
+.pfp img {display:block;width:150px;height:150px;max-width:calc(100% - 24px);aspect-ratio:1;object-fit:cover;border-radius:13px;margin:14px auto 0;border:1px solid #35565a}
+.info {padding:12px 11px 14px;display:flex;flex:1;flex-direction:column;align-items:stretch;min-width:0}
+.info h3 {font-size:15px;letter-spacing:-.35px;margin:8px 0 7px}
+.info p {color:#a8bdc3;font-size:11px;line-height:1.45;margin:0 0 13px;min-height:34px}
+.tag {font-size:9px;letter-spacing:1px}
+.river{color:#69e2eb}
+.download {font-size:10px;letter-spacing:0;padding:10px 5px;margin-top:auto}
+@media(max-width:900px){
+  .hero-art {min-height:280px}
+  .hero-art img {width:min(66%,235px)}
+  .art-ring {width:min(79%,295px)}
+  .cards {grid-template-columns:repeat(2,minmax(0,199px));max-width:420px;gap:14px}
+}
+@media(max-width:520px){
+  .hero {padding:48px 0 40px}
+  .hero-art {min-height:245px}
+  .hero-art img {width:min(66%,195px)}
+  .art-ring {width:min(79%,244px)}
+  .cards {grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+  .pfp img {width:124px;height:124px;max-width:calc(100% - 20px);margin:11px auto 0;border-radius:10px}
+  .info {padding:10px 7px 12px}
+  .info h3 {font-size:13px;margin:7px 0 5px}
+  .info p {font-size:10px;min-height:45px;margin-bottom:9px}
+  .tag {font-size:8px;letter-spacing:.65px}
+  .download {font-size:9px;padding:9px 3px}
+  .section {padding:53px 0}
+}
 </style>
 </head>
 <body class="clean-page">
@@ -27,13 +63,13 @@ header{position:sticky;top:0;z-index:40;border-bottom:1px solid #213437;backgrou
 <button data-lang="en">🇺🇸 English (US)</button><button data-lang="pt">🇧🇷 Português</button><button data-lang="es">🇪🇸 Español</button><button data-lang="fr">🇫🇷 Français</button><button data-lang="de">🇩🇪 Deutsch</button><button data-lang="ar">🇸🇦 العربية</button><button data-lang="zh">🇨🇳 简体中文</button><button data-lang="ja">🇯🇵 日本語</button><button data-lang="ko">🇰🇷 한국어</button><button data-lang="hi">🇮🇳 हिन्दी</button><button data-lang="ru">🇷🇺 Русский</button><button data-lang="tr">🇹🇷 Türkçe</button><button data-lang="id">🇮🇩 Bahasa Indonesia</button>
 </div></div><a class="follow" href="https://x.com/waitxyz" target="_blank" rel="noopener noreferrer">FOLLOW ON X ↗</a><button class="menu-btn" id="menu" aria-label="Open navigation">☰</button></div></div></header>
 <main>
-<section class="hero"><div class="container hero-inner"><div><div class="eyebrow">PLASTIK COMMUNITY · FREE PFP DROP</div><h1>THE CLEAN <em>TRIBE</em></h1><p class="lead">One planet. Four avatars. A free creative community inspired by cleaner oceans, thriving forests and healthier reefs.</p><div class="chips"><span class="chip">100% FREE TO JOIN</span><span class="chip">NO WALLET REQUIRED</span><span class="chip">FOUR MONO STYLES</span></div><div class="actions"><a class="button primary" href="#avatars">CHOOSE YOUR MONO ↓</a><a class="button" href="index.html">BACK TO HOME ←</a></div></div><div class="hero-art"><div class="art-ring"></div><img src="mono.jpg" alt="Official PLASTIK mascot MONO" width="430" height="430"><div class="orbit">#TheCleanTribe</div><div class="orbit two">OCEAN · FOREST · REEF</div></div></div></section>
+<section class="hero"><div class="container hero-inner"><div><div class="eyebrow">PLASTIK COMMUNITY · FREE PFP DROP</div><h1>THE CLEAN <em>TRIBE</em></h1><p class="lead">One planet. Four avatars. A free creative community inspired by cleaner oceans, thriving forests and cleaner rivers.</p><div class="chips"><span class="chip">100% FREE TO JOIN</span><span class="chip">NO WALLET REQUIRED</span><span class="chip">FOUR MONO STYLES</span></div><div class="actions"><a class="button primary" href="#avatars">CHOOSE YOUR MONO ↓</a><a class="button" href="index.html">BACK TO HOME ←</a></div></div><div class="hero-art"><div class="art-ring"></div><img src="mono.jpg" alt="Official PLASTIK mascot MONO" width="430" height="430"><div class="orbit">#TheCleanTribe</div><div class="orbit two">OCEAN · FOREST · RIVERS</div></div></div></section>
 <section class="section" id="avatars"><div class="container"><div class="section-top"><div><span class="kicker">THE FIRST FOUR</span><h2>FOUR GUARDIANS. ONE MISSION.</h2><p class="desc">Choose a MONO profile picture and download it for free. Make it yours on X, Telegram or any community you love.</p></div></div>
 <div class="cards">
-<article class="pfp"><img src="assets/clean-tribe/ocean-mono.png" alt="Ocean MONO avatar with waves and blue reflections" width="1024" height="1024" loading="lazy"><div class="info"><span class="tag ocean">01 / OCEAN</span><h3>OCEAN MONO</h3><p>For cleaner seas and beaches.</p><a class="download" href="assets/clean-tribe/ocean-mono.png" download="PLASTIK-Ocean-MONO.png">DOWNLOAD AVATAR ↓</a></div></article>
-<article class="pfp"><img src="assets/clean-tribe/forest-mono.png" alt="Forest MONO avatar surrounded by green leaves" width="1024" height="1024" loading="lazy"><div class="info"><span class="tag forest">02 / FOREST</span><h3>FOREST MONO</h3><p>For growing forests and green spaces.</p><a class="download" href="assets/clean-tribe/forest-mono.png" download="PLASTIK-Forest-MONO.png">DOWNLOAD AVATAR ↓</a></div></article>
-<article class="pfp"><img src="assets/clean-tribe/reef-mono.png" alt="Reef MONO avatar with pink and blue coral" width="1024" height="1024" loading="lazy"><div class="info"><span class="tag reef">03 / REEF</span><h3>REEF MONO</h3><p>For healthier coral reefs.</p><a class="download" href="assets/clean-tribe/reef-mono.png" download="PLASTIK-Reef-MONO.png">DOWNLOAD AVATAR ↓</a></div></article>
-<article class="pfp"><img src="assets/clean-tribe/genesis-mono.png" alt="Genesis MONO avatar with golden crown and halo" width="1024" height="1024" loading="lazy"><div class="info"><span class="tag genesis">04 / GENESIS</span><h3>GENESIS MONO</h3><p>For the first members of the tribe.</p><a class="download" href="assets/clean-tribe/genesis-mono.png" download="PLASTIK-Genesis-MONO.png">DOWNLOAD AVATAR ↓</a></div></article>
+<article class="pfp"><img src="assets/clean-tribe/ocean-mono.png" alt="Original iridescent MONO mascot cleaning ocean pollution" width="1024" height="1024" loading="lazy"><div class="info"><span class="tag ocean">01 / OCEAN</span><h3>OCEAN MONO</h3><p>For cleaner seas and beaches.</p><a class="download" href="assets/clean-tribe/ocean-mono.png" download="PLASTIK-Ocean-MONO.png">DOWNLOAD AVATAR ↓</a></div></article>
+<article class="pfp"><img src="assets/clean-tribe/forest-mono.png" alt="Original iridescent MONO mascot planting a seedling" width="1024" height="1024" loading="lazy"><div class="info"><span class="tag forest">02 / FOREST</span><h3>FOREST MONO</h3><p>For growing forests and green spaces.</p><a class="download" href="assets/clean-tribe/forest-mono.png" download="PLASTIK-Forest-MONO.png">DOWNLOAD AVATAR ↓</a></div></article>
+<article class="pfp"><img src="assets/clean-tribe/river-mono.png" alt="Original iridescent MONO mascot cleaning a river" width="1024" height="1024" loading="lazy"><div class="info"><span class="tag river">03 / RIVERS</span><h3>RIVER MONO</h3><p>For cleaner rivers and freshwater ecosystems.</p><a class="download" href="assets/clean-tribe/river-mono.png" download="PLASTIK-River-MONO.png">DOWNLOAD AVATAR ↓</a></div></article>
+<article class="pfp"><img src="assets/clean-tribe/genesis-mono.png" alt="Original iridescent MONO mascot wearing a royal crown" width="1024" height="1024" loading="lazy"><div class="info"><span class="tag genesis">04 / GENESIS</span><h3>GENESIS MONO</h3><p>For the first members of the tribe.</p><a class="download" href="assets/clean-tribe/genesis-mono.png" download="PLASTIK-Genesis-MONO.png">DOWNLOAD AVATAR ↓</a></div></article>
 </div><div class="all"><a class="button" href="clean-tribe-pfps.zip" download="PLASTIK-Clean-Tribe-PFPs.zip">DOWNLOAD ALL FOUR ↓</a></div></div></section>
 <section class="section steps-bg"><div class="container"><div class="section-top"><div><span class="kicker">JOIN IN FOUR STEPS</span><h2>HOW TO JOIN</h2><p class="desc">No purchases, tokens or signups needed to take part.</p></div></div><div class="steps"><div class="step"><strong>01</strong><h3>CHOOSE</h3><p>Pick your favorite MONO from the four guardians.</p></div><div class="step"><strong>02</strong><h3>DOWNLOAD</h3><p>Save your image with the free download button.</p></div><div class="step"><strong>03</strong><h3>REPRESENT</h3><p>Use it as your profile picture wherever you like.</p></div><div class="step"><strong>04</strong><h3>SHARE</h3><p>Tell your story with #TheCleanTribe and #PLASTIK.</p></div></div></div></section>
 <div class="container"><section class="community"><div class="kicker">ONE COMMUNITY · ONE PLANET</div><h2>THE CLEAN TRIBE IS FOR EVERYONE.</h2><p>Meet MONO. Choose your identity. Share ideas for cleaner oceans and a greener future. Every authentic voice matters.</p><div class="actions" style="justify-content:center"><a class="button primary" href="https://x.com/intent/post?text=I%20joined%20%23TheCleanTribe%20%F0%9F%A7%AC%20Choose%20your%20MONO%20and%20join%20the%20creative%20movement%20for%20a%20cleaner%20planet.%20%23PLASTIK%20https%3A%2F%2Fwww.wait.finance%2Fclean-tribe.html" target="_blank" rel="noopener noreferrer">SHARE ON X ↗</a><a class="button" href="https://x.com/waitxyz" target="_blank" rel="noopener noreferrer">FOLLOW ON X ↗</a></div></section><div class="notice">These free PFP images are creative collectibles only. They are not NFTs, financial rewards or evidence of completed environmental projects. No wallet connection or payment is required.</div></div>

@@ -13,3 +13,5 @@ Os PFPs são imagens criativas; não são NFTs ou comprovantes de impacto ambien
 
 O pacote foi preparado a partir do último ZIP do site enviado na conversa: PLASTIK-13-idiomas-traducao-completa.zip.
 Se o site online foi editado posteriormente, compare os arquivos antes de substituir.
+
+ATUALIZAÇÃO: Cards menores e responsivos. Avatares oficiais: OCEAN, FOREST, RIVERS e GENESIS. Os arquivos index.html, tokenomics.html, oxy.html e as funções originais permanecem intactos.
