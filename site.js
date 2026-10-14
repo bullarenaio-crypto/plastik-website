@@ -34,7 +34,7 @@ function localizedDonation(){
 }
 function refreshFinancialStages(){
  const grid=document.getElementById('stageGrid');if(!grid)return;
- const stageCap=250000,presaleTokens=350000000000000;
+ const stageCap=250000,presaleTokens=350000000000;
  const basePrice=stageCap*[0,1,2,3].reduce((s,i)=>s+1/1.2**i,0)/presaleTokens;
  const [stageName,tokenLabel,perToken]=DATA.stage[lang];
  grid.replaceChildren();
@@ -43,8 +43,8 @@ function refreshFinancialStages(){
   const el=document.createElement('article');el.className='stage';
   const head=document.createElement('b');head.textContent=stageName+' '+String(i+1).padStart(2,'0');
   const cap=document.createElement('div');cap.className='cap';cap.textContent='$250,000';
-  const pr=document.createElement('div');pr.className='price';pr.textContent='$'+price.toFixed(14)+' / '+perToken;
-  const qty=document.createElement('div');qty.className='supply';qty.textContent=(allocation/1e12).toFixed(4)+'T '+tokenLabel;
+  const pr=document.createElement('div');pr.className='price';pr.textContent='$'+price.toFixed(12)+' / '+perToken;
+  const qty=document.createElement('div');qty.className='supply';qty.textContent=(allocation/1e9).toFixed(4)+'B '+tokenLabel;
   el.append(head,cap,pr,qty);grid.appendChild(el);
  }
 }
